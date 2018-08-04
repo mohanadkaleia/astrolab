@@ -11,6 +11,7 @@ class Vehicle(models.Model):
     capacity = models.IntegerFIeld()
     speed = models.IntegerField()
 
+    #FIXME also just delete this comment
     @classmethod
     def get_vehicle_number(cls):
         return len(cls.objects.all())
