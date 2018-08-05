@@ -3,7 +3,7 @@ from django.db import models
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    #FIXME just delete (master)
+
 
 class Vehicle(models.Model):
     name = models.CharField(max_length=100)
@@ -11,7 +11,6 @@ class Vehicle(models.Model):
     capacity = models.IntegerFIeld()
     speed = models.IntegerField()
 
-    # FIXME also just delete this comment
     @classmethod
     def get_vehicle_number(cls):
         return len(cls.objects.all())
