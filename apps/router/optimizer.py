@@ -46,10 +46,10 @@ class CityBlock():
 class DataProblem():
     """Stores the data for the problem"""
 
-    def __init__(self, locations, time_windows):
+    def __init__(self, locations, time_windows, number_vehicles):
         """Initializes the data for the problem"""
         self._vehicle = Vehicle()
-        self._num_vehicles = 4
+        self._num_vehicles = number_vehicles
 
 
         # locations in meters using the city block dimension
@@ -305,34 +305,10 @@ def timeit(method):
     return timed
 
 
-def main():
+def route_tasks(locations, time_windows, num_vehicles):
     """Entry point of the program"""
     # Instantiate the data problem.
-    # Locations in block unit
-    locations = \
-            [(4, 4), # depot
-             (2, 0), (8, 0), # row 0
-             (0, 1), (1, 1),
-             (5, 2), (7, 2),
-             (3, 3), (6, 3),
-             (5, 5), (8, 5),
-             (1, 6), (2, 6),
-             (3, 7), (6, 7),
-             (0, 8), (7, 8)
-             ]
-
-    time_windows = \
-        [(0, 0),
-         (75, 85), (75, 85), # 1, 2
-         (60, 70), (45, 55), # 3, 4
-         (0, 8), (50, 60), # 5, 6
-         (0, 10), (10, 20), # 7, 8
-         (0, 10), (75, 85), # 9, 10
-         (85, 95), (5, 15), # 11, 12
-         (15, 25), (10, 20),
-         (50, 60), (100, 120) # 13, 14
-         ] # 15, 16
-    data = DataProblem(locations, time_windows)
+    data = DataProblem(locations, time_windows, num_vehicles)
 
     # Create Routing Model
     routing = pywrapcp.RoutingModel(data.num_locations, data.num_vehicles, data.depot)
@@ -358,5 +334,25 @@ def main():
     printer.print()
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    # Locations in block unit
+    locations = \
+            [(4, 4), # depot
+             (2, 0), (8, 0),
+             (0, 1), (1, 1),
+             (5, 2), (7, 2),
+             (3, 3), (6, 3),
+             (5, 5), (8, 5),
+             (1, 6), (2, 6),
+             ]
+
+    time_windows = \
+        [(0, 0),
+         (75, 85), (75, 85), # 1, 2
+         (60, 70), (45, 55), # 3, 4
+         (0, 8), (50, 60), # 5, 6
+         (0, 10), (10, 20), # 7, 8
+         (0, 10), (75, 85), # 9, 10
+         (85, 95), (5, 15), # 11, 12
+         ]
+    route_tasks(locations, time_windows, 4)
