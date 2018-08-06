@@ -5,6 +5,8 @@ from six.moves import xrange
 from ortools.constraint_solver import pywrapcp
 from ortools.constraint_solver import routing_enums_pb2
 import time
+from sklearn.cluster import KMeans
+import numpy as np
 ###########################
 # Problem Data Definition #
 ###########################
